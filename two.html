@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    .feedback-container {
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .feedback-label {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .emoji-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .emoji-button {
+      font-size: 24px;
+      cursor: pointer;
+      margin: 0 10px;
+      padding: 5px;
+      border: none;
+      background-color: transparent;
+    }
+
+    #feedback-message {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+
+    #submit-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="feedback-container">
+  <h2 class="feedback-label">How was your experience?</h2>
+
+  <div class="emoji-buttons">
+    <button class="emoji-button" onclick="setFeedback('😃')">😃</button>
+    <button class="emoji-button" onclick="setFeedback('😊')">😊</button>
+    <button class="emoji-button" onclick="setFeedback('😐')">😐</button>
+    <button class="emoji-button" onclick="setFeedback('😞')">😞</button>
+    <button class="emoji-button" onclick="setFeedback('😡')">😡</button>
+  </div>
+
+  <textarea id="feedback-message" placeholder="Tell us more about your experience..."></textarea>
+
+  <button id="submit-button" onclick="submitFeedback()">Submit</button>
+</div>
+
+<script>
+  let selectedFeedback = '';
+
+  function setFeedback(emoji) {
+    selectedFeedback = emoji;
+    // Highlight the selected emoji button (optional)
+    document.querySelectorAll('.emoji-button').forEach(button => {
+      button.style.border = 'none';
+    });
+    const selectedButton = document.querySelector(`.emoji-button:contains('${emoji}')`);
+    if (selectedButton) {
+      selectedButton.style.border = '2px solid #4caf50';
+    }
+  }
+
+  function submitFeedback() {
+    const feedbackMessage = document.getElementById('feedback-message').value;
+    if (selectedFeedback && feedbackMessage) {
+      alert(`Feedback: ${selectedFeedback}\nMessage: ${feedbackMessage}`);
+    } else {
+      alert('Please select a feedback emoji and provide a message.');
+    }
+  }
+
+  // Custom jQuery-like :contains() selector
+  // This is used to find the button with a specific emoji
+  // Note: This is a simplified version and may not work in all cases
+  // For a complete implementation, consider using a library like jQuery
+  HTMLElement.prototype.contains = function(emoji) {
+    return this.innerText.includes(emoji);
+  };
+</script>
+
+</body>
+</html>

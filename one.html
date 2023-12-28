@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #feedback-container {
+      text-align: center;
+    }
+
+    .emoji {
+      font-size: 2em;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .emoji:hover {
+      transform: scale(1.2);
+    }
+
+    #thank-you-message {
+      margin-top: 20px;
+      font-size: 1.5em;
+    }
+  </style>
+</head>
+<body>
+
+<div id="feedback-container">
+  <div class="emoji" onclick="giveFeedback('😃')">😃</div>
+  <div class="emoji" onclick="giveFeedback('😐')">😐</div>
+  <div class="emoji" onclick="giveFeedback('😞')">😞</div>
+  <div id="thank-you-message"></div>
+</div>
+
+<script>
+  function giveFeedback(emoji) {
+    // You can send the feedback to the server or perform any other action here
+    // For simplicity, let's just display a thank-you message with the selected emoji
+    document.getElementById('thank-you-message').innerHTML = `Thank you for your feedback! ${emoji}`;
+  }
+</script>
+
+</body>
+</html>
